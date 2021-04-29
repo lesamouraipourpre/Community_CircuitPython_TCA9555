@@ -2,7 +2,7 @@ Introduction
 ============
 
 
-.. image:: https://readthedocs.org/projects/community-circuitpython-tca9555/badge/?version=latest
+.. image:: https://readthedocs.org/projects/community-circuitpython-TCA9555/badge/?version=latest
     :target: https://community-tca9555.readthedocs.io/
     :alt: Documentation Status
 
@@ -12,8 +12,8 @@ Introduction
     :alt: Discord
 
 
-.. image:: https://github.com/lesamouraipourpre/Community_CircuitPython_tca9555/workflows/Build%20CI/badge.svg
-    :target: https://github.com/lesamouraipourpre/Community_CircuitPython_tca9555/actions
+.. image:: https://github.com/lesamouraipourpre/Community_CircuitPython_TCA9555/workflows/Build%20CI/badge.svg
+    :target: https://github.com/lesamouraipourpre/Community_CircuitPython_TCA9555/actions
     :alt: Build Status
 
 
@@ -78,7 +78,7 @@ Contributing
 ============
 
 Contributions are welcome! Please read our `Code of Conduct
-<https://github.com/lesamouraipourpre/Community_CircuitPython_tca9555/blob/HEAD/CODE_OF_CONDUCT.md>`_
+<https://github.com/lesamouraipourpre/Community_CircuitPython_TCA9555/blob/HEAD/CODE_OF_CONDUCT.md>`_
 before contributing to help this project stay welcoming.
 
 Documentation
