@@ -22,16 +22,9 @@ Table of Contents
     api
 
 .. toctree::
-    :caption: Tutorials
-
-.. todo:: Add any Learn guide links here. If there are none, then simply delete this todo and leave
-    the toctree above for use later.
-
-.. toctree::
     :caption: Related Products
 
-.. todo:: Add any product links here. If there are none, then simply delete this todo and leave
-    the toctree above for use later.
+    Pimoroni Pico RGB Keybad Base <https://shop.pimoroni.com/products/pico-rgb-keypad-base>
 
 .. toctree::
     :caption: Other Links

@@ -24,10 +24,10 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     # Community Bundle Information
-    name="circuitpython-circuitpython-tca9555",
+    name="community-circuitpython-tca9555",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
-    description="Library for TCA9555 Low-Voltage 16-Bit I2C and SMBus I/O Expander with Interrupt Output and Configuration Registers",
+    description="CircuitPython library for connecting a TCA9555 16-Bit I2C GPIO expander",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     # The project's main homepage.
@@ -54,7 +54,7 @@ setup(
         "Programming Language :: Python :: 3.5",
     ],
     # What does your project relate to?
-    keywords="adafruit blinka circuitpython micropython tca9555 I2C IOExpander 16-bit",
+    keywords="adafruit blinka circuitpython micropython tca9555 i2c gpio expander hardware",
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     # TODO: IF LIBRARY FILES ARE A PACKAGE FOLDER,
