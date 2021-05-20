@@ -58,14 +58,12 @@ CONFIGURATION_PORT_1 = const(0x07)
 
 class TCA9555:
     # pylint: disable=too-few-public-methods
-    """
-    Document me class TCA9555
-    """
+    """CircuitPython driver for the Texas Instruments TCA9555 expander."""
 
     def __init__(self, i2c: busio.I2C, address: int = ADDRESS_MINIMUM):
         """
-        :param busio.I2C i2c: the I2C bus object to use. This will be
-            converted to an `adafruit_bus_device.i2c_device.I2CDevice`
+        :param busio.I2C i2c: the I2C bus object to use. *Note:* This will
+            be converted to an `adafruit_bus_device.i2c_device.I2CDevice`
             internally.
         :param int address: The I2C address of the TCA9555. This must be in
             the range `ADDRESS_MINIMUM` to `ADDRESS_MAXIMUM`. (Defaults to

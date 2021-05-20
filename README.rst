@@ -20,7 +20,10 @@ Introduction
     :target: https://github.com/psf/black
     :alt: Code Style: Black
 
-Library for TCA9555 Low-Voltage 16-Bit I2C and SMBus I/O Expander with Interrupt Output and Configuration Registers
+CircuitPython library for Texas Instruments TCA9555 Low-Voltage 16-Bit I2C
+and SMBus I/O Expander with Input / Output and Polarity Inversion.
+
+`DataSheet <https://www.ti.com/lit/ds/symlink/tca9555.pdf>`_
 
 
 Dependencies
@@ -71,8 +74,63 @@ To install in a virtual environment in your current project:
 Usage Example
 =============
 
-.. note:: T O D O Add a quick, simple example. It and other examples should live in the
-    examples folder and be included in docs/examples.rst.
+Create an instance of TCA9555 expander. This defaults to all 16 pins set as
+inputs with no polarity conversion.
+
+.. code-block:: python
+
+    from community_tca9555 import TCA9555
+    expander = TCA9555(board.I2C())  # Use default address of 0x20
+
+Set the low 8 bits as inputs and the high 8 bits as outputs.
+
+.. code-block:: python
+
+    # set all 16 pins at once
+    expander.configuration_ports = 0x00FF
+
+    # or
+    # set port 0 (8bits) and port 1 (8 bits)
+    expander.configuration_port_0 = 0xFF  # Inputs
+    expander.configuration_port_1 = 0x00  # Outputs
+
+    # or
+    # set each pin individually
+    expander.configuration_port_0_pin_0 = True   # Input
+    # ...
+    expander.configuration_port_1_pin_7 = False  # Output
+
+Set pins 6 and 7 of both port 0 and port 1 as polarity inverted.
+
+.. code-block:: python
+
+    # Set polarity inversion state for individual pins.
+    expander.polarity_inversion_port_0_pin_6 = True  # Inverted
+    expander.polarity_inversion_port_0_pin_7 = True
+    expander.polarity_inversion_port_1_pin_6 = True
+    expander.polarity_inversion_port_1_pin_7 = True
+
+    # or
+    # Set an 8bit port at once
+    expander.polarity_inversion_port_0 = 0xC0  # Just bits 6 and 7
+
+    # or
+    # Set all 16bits at once
+    expander.polarity_inversions = 0xC0C0
+
+Read the input pins.
+
+.. code-block:: python
+
+    input_state = expander.input_port_0
+    print("Inputs: {:08b}".format(input_state))
+
+Set the state of the output pins.
+
+.. code-block:: python
+
+    expander.output_port_1 = 0x42
+
 
 Contributing
 ============
