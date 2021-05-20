@@ -1,9 +1,8 @@
 Introduction
 ============
 
-
-.. image:: https://readthedocs.org/projects/community-circuitpython-TCA9555/badge/?version=latest
-    :target: https://community-tca9555.readthedocs.io/
+.. image:: https://readthedocs.org/projects/community-circuitpython-tca9555/badge/?version=latest
+    :target: https://community-circuitpython-tca9555.readthedocs.io/
     :alt: Documentation Status
 
 
