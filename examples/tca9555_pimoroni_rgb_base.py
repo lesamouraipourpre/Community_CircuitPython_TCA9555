@@ -45,11 +45,11 @@ except ImportError:
 expander = TCA9555(board.I2C())
 
 
-# leds = DotStar(board.CLOCK,board.DATA,16)
 leds = DotStar(board.GP18, board.GP19, 16, brightness=0.2)
 chip_select = digitalio.DigitalInOut(board.GP17)
 chip_select.direction = digitalio.Direction.OUTPUT
-chip_select.value = True
+# There should be nothing else on this SPI bus, so grab it for the duration
+chip_select.value = False
 
 # Prepare to read the 16 inputs
 # Create a tuple of buttons which are debounced so they can be monitored for changes.
@@ -81,11 +81,9 @@ with leds:
         time.sleep(0.001)
         for index, button in enumerate(buttons):
             button.update()  # Update the debounce information
-            chip_select.value = False  # Grab the SPI bus
             if button.value:
                 # Not pressed
                 leds[index] = (0, 128, 0, 0.05)  # Dim green
             else:
                 # Pressed
                 leds[index] = (255, 0, 128, 0.8)  # Bright pink
-            chip_select.value = True  # Release the SPI bus
