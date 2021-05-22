@@ -9,12 +9,24 @@
 
 
 import board
+import busio
 
 from community_tca9555 import TCA9555
 
 
-# Create the TCA9555 expander using the board default I2C
-expander = TCA9555(board.I2C())
+# Get or create an I2C object
+if hasattr(board, "I2C"):
+    i2c = board.I2C()
+elif hasattr(board, "SCL") and hasattr(board, "SDA"):
+    i2c = busio.I2C(scl=board.SCL, sda=board.SDA)
+else:
+    # These pins are for Raspberry Pi Pico
+    # If using another board, these may need to be changed.
+    i2c = busio.I2C(scl=board.GP5, sda=board.GP4)
+
+# Create the TCA9555 expander
+expander = TCA9555(i2c)
+
 
 # Read the configuration of all 16 pins
 # 0 = output, 1 = input

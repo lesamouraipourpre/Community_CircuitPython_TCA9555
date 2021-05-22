@@ -77,7 +77,10 @@ inputs with no polarity conversion.
 .. code-block:: python
 
     from community_tca9555 import TCA9555
+    # If the board has I2C defined
     expander = TCA9555(board.I2C())  # Use default address of 0x20
+    # Else specify the specific pins
+    expander = TCA9555(busio.I2C(scl=board.GP5, sda=board.GP4))  # for the RP Pico
 
 Set the low 8 bits as inputs and the high 8 bits as outputs.
 

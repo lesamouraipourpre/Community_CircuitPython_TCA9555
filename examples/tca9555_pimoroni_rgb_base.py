@@ -12,6 +12,7 @@
 import time
 import sys
 import board
+import busio
 import digitalio
 
 from community_tca9555 import TCA9555
@@ -41,15 +42,25 @@ except ImportError:
     sys.exit()
 
 
-# Create the TCA9555 expander using the board default I2C
-expander = TCA9555(board.I2C())
+# Get or create an I2C object
+if hasattr(board, "I2C"):
+    i2c = board.I2C()
+elif hasattr(board, "SCL") and hasattr(board, "SDA"):
+    i2c = busio.I2C(scl=board.SCL, sda=board.SDA)
+else:
+    # These pins are for Raspberry Pi Pico
+    # If using another board, these may need to be changed.
+    i2c = busio.I2C(scl=board.GP5, sda=board.GP4)
+
+# Create the TCA9555 expander
+expander = TCA9555(i2c)
 
 
-# leds = DotStar(board.CLOCK,board.DATA,16)
 leds = DotStar(board.GP18, board.GP19, 16, brightness=0.2)
 chip_select = digitalio.DigitalInOut(board.GP17)
 chip_select.direction = digitalio.Direction.OUTPUT
-chip_select.value = True
+# There should be nothing else on this SPI bus, so grab it for the duration
+chip_select.value = False
 
 # Prepare to read the 16 inputs
 # Create a tuple of buttons which are debounced so they can be monitored for changes.
@@ -81,11 +92,9 @@ with leds:
         time.sleep(0.001)
         for index, button in enumerate(buttons):
             button.update()  # Update the debounce information
-            chip_select.value = False  # Grab the SPI bus
             if button.value:
                 # Not pressed
                 leds[index] = (0, 128, 0, 0.05)  # Dim green
             else:
                 # Pressed
                 leds[index] = (255, 0, 128, 0.8)  # Bright pink
-            chip_select.value = True  # Release the SPI bus
