@@ -64,10 +64,9 @@ jobs:
     - name: Determine tag version and munge it in
       id: version
       run: |
-        LATEST_RELEASE_VERSION=$(git describe --abbrev=0 --tags)
-        echo The latest release version is \"$LATEST_RELEASE_VERSION\".
+        echo The latest release version is \"${{github.event.release.tag_name}}\".
         # Don't descend into ./.env, ./.eggs, or ./docs
-        for file in $(find -not -path "./.*" -not -path "./docs*" -name "*.py"); do sed -i -e "s/0.0.0-auto.0/$LATEST_RELEASE_VERSION/" $file; done;
+        for file in $(find -not -path "./.*" -not -path "./docs*" -name "*.py"); do sed -i -e "s/0.0.0-auto.0/${{github.event.release.tag_name}}/" $file; done;
     - name: Check For setup.py
       id: need-pypi
       run: |
