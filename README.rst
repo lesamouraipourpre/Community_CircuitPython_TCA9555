@@ -25,7 +25,6 @@ and SMBus I/O Expander with Input / Output and Polarity Inversion.
 
 `DataSheet <https://www.ti.com/lit/ds/symlink/tca9555.pdf>`_
 
-
 Dependencies
 =============
 This driver depends on:
@@ -65,8 +64,6 @@ To install in a virtual environment in your current project:
     python3 -m venv .env
     source .env/bin/activate
     pip3 install community-circuitpython-tca9555
-
-
 
 Usage Example
 =============
@@ -130,7 +127,6 @@ Set the state of the output pins.
 .. code-block:: python
 
     expander.output_port_1 = 0x42
-
 
 Contributing
 ============
